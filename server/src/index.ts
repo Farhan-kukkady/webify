@@ -6,6 +6,7 @@ import { contactRouter } from './routes/contact';
 import { createRateLimiter } from './middleware/rateLimiter';
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = process.env['PORT'] ?? 3000;
 const NODE_ENV = process.env['NODE_ENV'] ?? 'development';
 
@@ -64,10 +65,8 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
   res.status(500).json({ error: 'Internal server error' });
 });
 
-if (!process.env['VERCEL']) {
-  app.listen(PORT, () => {
-    console.log(`🚀 Webify & Co API running on http://localhost:${PORT} [${NODE_ENV}]`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`🚀 Webify & Co API running on port ${PORT} [${NODE_ENV}]`);
+});
 
 export = app;

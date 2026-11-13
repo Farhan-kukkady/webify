@@ -9,6 +9,7 @@ export function createRateLimiter() {
     max,
     standardHeaders: true,
     legacyHeaders: false,
+    validate: { xForwardedForHeader: false },
     message: {
       error: 'Too many requests from this IP. Please try again later.',
     },

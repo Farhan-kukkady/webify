@@ -9,6 +9,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const contact_1 = require("./routes/contact");
 const rateLimiter_1 = require("./middleware/rateLimiter");
 const app = (0, express_1.default)();
+app.set('trust proxy', 1);
 const PORT = process.env['PORT'] ?? 3000;
 const NODE_ENV = process.env['NODE_ENV'] ?? 'development';
 // ── Security middleware ───────────────────────────────────────────────────────
@@ -55,10 +56,8 @@ app.use((err, _req, res, _next) => {
     console.error('[Error]', err.message);
     res.status(500).json({ error: 'Internal server error' });
 });
-if (!process.env['VERCEL']) {
-    app.listen(PORT, () => {
-        console.log(`🚀 Webify & Co API running on http://localhost:${PORT} [${NODE_ENV}]`);
-    });
-}
+app.listen(PORT, () => {
+    console.log(`🚀 Webify & Co API running on port ${PORT} [${NODE_ENV}]`);
+});
 module.exports = app;
 //# sourceMappingURL=index.js.map
