@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './whatsapp-button.component.css',
 })
 export class WhatsappButtonComponent {
-  readonly whatsappUrl = 'https://wa.me/15551234567?text=Hi%20Webify%20%26%20Co%2C%20I%27m%20interested%20in%20your%20services!';
+  readonly whatsappUrl = 'https://wa.me/916361861352?text=Hi%20Webify%20%26%20Co%2C%20I%27m%20interested%20in%20your%20services!';
 }

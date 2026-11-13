@@ -43,7 +43,7 @@ export class AboutComponent {
       accent: 'from-blue-500/20 to-electric-500/30',
       badge: 'Engineering & Strategy',
       socials: {
-        linkedin: 'https://linkedin.com',
+        linkedin: 'https://www.linkedin.com/in/farhan-kukkady/',
         email: 'mailto:farhan@webifyco.com',
       },
     },
@@ -57,8 +57,8 @@ export class AboutComponent {
       accent: 'from-purple-500/20 to-cyan-500/30',
       badge: 'Brand & Marketing',
       socials: {
-        linkedin: 'https://linkedin.com',
-        email: 'mailto:ibrahim@webifyco.com',
+        linkedin: 'https://www.linkedin.com/in/ibrahim-sahil/',
+        email: 'mailto:ibrahimsahil@webifyco.com',
       },
     },
   ];
