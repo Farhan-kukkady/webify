@@ -4,20 +4,12 @@
     "client": {
       "root": "client",
       "framework": "angular"
-    },
-    "server": {
-      "root": "server",
-      "framework": "express",
-      "installCommand": "npm install",
-      "buildCommand": "npm run build"
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": {
-        "service": "server"
-      }
+      "destination": "/api/$1"
     },
     {
       "source": "/(.*)",
