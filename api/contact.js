@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
       await transporter.sendMail({
         from: `"Webify & Co Website" <${smtpUser}>`,
         to: recipient,
-        replyTo: email,
+        replyTo: `"${name}" <${email}>`,
         subject: `New Inquiry from ${name} — ${service || 'General Inquiry'}`,
         text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nService: ${service || 'N/A'}\nBudget: ${budget || 'N/A'}\n\nProject Details:\n${projectDetails}`,
         html: `
