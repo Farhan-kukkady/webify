@@ -1,0 +1,210 @@
+<section class="section-padding bg-navy-900 relative overflow-hidden">
+  <div class="section-container">
+    <!-- Header -->
+    <div class="text-center mb-12 reveal">
+      <span class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+        Proven Track Record
+      </span>
+      <h2 class="text-display-lg font-heading text-white mb-4">
+        Real Client Case Studies & <span class="gradient-text">Live Work</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        Zero dummy templates. Explore our live client platforms across enterprise AI engineering, luxury real estate, and bespoke digital products.
+      </p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12 reveal">
+      @for (filter of filters; track filter) {
+        <button
+          (click)="setFilter(filter)"
+          class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 tap-target"
+          [class.bg-electric-500]="activeFilter() === filter"
+          [class.text-white]="activeFilter() === filter"
+          [class.shadow-electric]="activeFilter() === filter"
+          [class.bg-white]="activeFilter() !== filter"
+          [class.bg-opacity-5]="activeFilter() !== filter"
+          [class.text-slate-400]="activeFilter() !== filter"
+          [class.hover:text-white]="activeFilter() !== filter"
+          [class.hover:bg-white]="activeFilter() !== filter"
+          [class.hover:bg-opacity-10]="activeFilter() !== filter"
+          [id]="'portfolio-filter-' + filter"
+        >
+          {{ filter }}
+        </button>
+      }
+    </div>
+
+    <!-- Projects List / Deep Case Studies -->
+    <div class="space-y-12">
+      @for (project of filteredProjects; track project.id; let i = $index) {
+        <article
+          class="card-featured border border-white/10 hover:border-electric-500/40 bg-gradient-to-br from-navy-900/95 via-navy-850 to-navy-900 p-6 sm:p-10 rounded-3xl transition-all duration-300 shadow-2xl relative overflow-hidden group reveal"
+          [id]="'case-study-' + project.id"
+        >
+          <!-- Ambient Glow -->
+          <div class="absolute -top-24 -right-24 w-72 h-72 bg-gradient-to-br {{ project.color }} rounded-full blur-3xl pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity"></div>
+
+          <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
+            <!-- Left 7 cols: Case Study Breakdown -->
+            <div class="lg:col-span-7 space-y-6">
+              <!-- Header Badges -->
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-electric-500/15 border border-electric-500/25 text-electric-300 text-xs font-bold uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-electric-400 animate-pulse"></span>
+                  {{ project.accentBadge }}
+                </span>
+                <span class="text-xs text-slate-400 font-mono flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  {{ project.location }}
+                </span>
+              </div>
+
+              <!-- Title & Tagline -->
+              <div>
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-white group-hover:text-electric-300 transition-colors">
+                  {{ project.title }}
+                </h3>
+                <p class="text-sm sm:text-base text-electric-400 font-medium mt-1">
+                  {{ project.tagline }}
+                </p>
+              </div>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                {{ project.description }}
+              </p>
+
+              <!-- Problem vs Solution Matrix -->
+              <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2">
+                  <div class="flex items-center gap-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    The Challenge
+                  </div>
+                  <p class="text-xs text-slate-300 leading-relaxed">{{ project.problem }}</p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2">
+                  <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider font-mono">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    The Solution We Built
+                  </div>
+                  <p class="text-xs text-slate-300 leading-relaxed">{{ project.solution }}</p>
+                </div>
+              </div>
+
+              <!-- Key Solution Highlights -->
+              <div class="space-y-2 pt-1">
+                <span class="text-xs font-bold uppercase font-mono tracking-wider text-slate-400 block mb-2">
+                  Key Interactive Capabilities
+                </span>
+                <div class="grid sm:grid-cols-2 gap-2">
+                  @for (h of project.highlights; track h) {
+                    <div class="flex items-center gap-2 text-xs text-slate-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                      <span>{{ h }}</span>
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <!-- Tech Stack Badges -->
+              <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/10">
+                @for (tag of project.tags; track tag) {
+                  <span class="text-xs px-2.5 py-1 rounded-lg bg-navy-950/70 border border-white/10 text-slate-300 font-mono">
+                    {{ tag }}
+                  </span>
+                }
+              </div>
+
+              <!-- Action Links -->
+              <div class="pt-2 flex flex-wrap items-center gap-4">
+                <a
+                  [href]="project.liveUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary text-sm px-6 py-3 shadow-electric inline-flex items-center gap-2"
+                >
+                  <span>Launch Live Website</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                </a>
+
+                <span class="text-xs font-mono text-slate-400">{{ project.liveUrl.replace('https://', '') }}</span>
+              </div>
+            </div>
+
+            <!-- Right 5 cols: Visual Presentation Frame -->
+            <div class="lg:col-span-5 space-y-4">
+              <a
+                [href]="project.liveUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block group/preview relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-navy-950 aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-electric-400"
+              >
+                <!-- Browser Bar Mockup -->
+                <div class="bg-navy-900/90 px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                  </div>
+                  <span class="text-[10px] font-mono text-slate-400 truncate max-w-[200px]">
+                    {{ project.liveUrl }}
+                  </span>
+                  <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    Live
+                  </span>
+                </div>
+
+                <!-- Image -->
+                <div class="relative w-full h-[calc(100%-35px)] overflow-hidden">
+                  <img
+                    [src]="project.imagePath"
+                    [alt]="project.title + ' Client Website'"
+                    class="w-full h-full object-cover object-top group-hover/preview:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <!-- Hover Action Overlay -->
+                  <div class="absolute inset-0 bg-navy-950/70 opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                    <span class="btn-primary text-xs py-2.5 px-4 shadow-electric inline-flex items-center gap-2">
+                      Explore Live Platform
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Quick Client Info Box -->
+              <div class="p-4 rounded-xl bg-navy-950/60 border border-white/5 text-xs text-slate-300 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] uppercase font-mono text-slate-500 block">Deliverables</span>
+                  <span class="font-medium text-white">Full-Stack Design & Architecture</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-[10px] uppercase font-mono text-slate-500 block">Status</span>
+                  <span class="text-emerald-400 font-semibold flex items-center gap-1 justify-end">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Production Live
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16 reveal">
+      <p class="text-slate-400 mb-4 text-base">Want to build an enterprise platform or bespoke digital product like these?</p>
+      <a
+        routerLink="/contact"
+        class="btn-primary inline-flex items-center gap-2 px-8 py-3.5 shadow-electric text-base"
+      >
+        Start Your Project With Farhan & Ibrahim
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

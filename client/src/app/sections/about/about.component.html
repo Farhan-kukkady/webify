@@ -1,0 +1,166 @@
+<section class="section-padding bg-navy-950/60 relative overflow-hidden">
+  <!-- Ambient background glow -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-1/4 -left-20 w-96 h-96 bg-electric-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="section-container relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Our Story & Leadership
+      </span>
+      <h2 class="text-display-lg font-heading text-white mb-4">
+        Two Friends. One Mission. <br class="hidden sm:inline" />
+        <span class="gradient-text">Build. Brand. Grow.</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        Meet the founders behind Webify & Co — dedicated to building high-converting websites and scaling digital brands.
+      </p>
+    </div>
+
+    <!-- Story Showcase Box -->
+    <div class="card-featured mb-16 relative overflow-hidden reveal">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <!-- Left: Story Narrative -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-electric-500/10 border border-electric-500/20 text-electric-400 text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-electric-400 animate-pulse"></span>
+            From Passion Project to Global Agency
+          </div>
+
+          @for (p of storyParagraphs; track p.title) {
+            <div>
+              <h3 class="text-white font-bold text-lg font-heading mb-2 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-electric-400"></span>
+                {{ p.title }}
+              </h3>
+              <p class="text-slate-300 text-base leading-relaxed">{{ p.text }}</p>
+            </div>
+          }
+
+          <!-- Quote callout -->
+          <div class="border-l-2 border-electric-500 pl-4 py-1 italic text-slate-400 text-sm">
+            "We believe great websites are not just pretty pages — they are relentless revenue drivers that work 24/7 for your business."
+          </div>
+        </div>
+
+        <!-- Right: Milestones & Brand Mark -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center p-6 bg-navy-900/60 rounded-2xl border border-white/5 text-center">
+          <!-- Webify Brand Mark -->
+          <div class="w-20 h-20 mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-electric-500/20 via-purple-500/10 to-transparent border border-electric-500/30 shadow-electric">
+            <img
+              src="assets/images/webify-mark.png"
+              alt="Webify Brand Mark"
+              class="w-14 h-auto object-contain"
+            />
+          </div>
+
+          <h4 class="font-heading font-black text-2xl text-white tracking-tight mb-1">
+            WEBIFY <span class="text-electric-400">&</span> CO
+          </h4>
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-6">
+            Build. Brand. Grow.
+          </p>
+
+          <!-- Milestone grid -->
+          <div class="grid grid-cols-2 gap-3 w-full">
+            @for (m of milestones; track m.label) {
+              <div class="glass p-3 rounded-xl border-white/5">
+                <div class="text-xl font-bold font-heading text-white">{{ m.value }}</div>
+                <div class="text-[11px] text-slate-400 leading-tight mt-0.5">{{ m.label }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founders Grid -->
+    <div class="grid md:grid-cols-2 gap-8">
+      @for (founder of founders; track founder.name; let i = $index) {
+        <div
+          class="card group relative flex flex-col justify-between overflow-hidden hover:border-electric-500/40 transition-all duration-300 reveal"
+          [style.transition-delay]="(i * 120) + 'ms'"
+          [id]="'founder-' + (i === 0 ? 'farhan' : 'sahil')"
+        >
+          <!-- Top subtle glow -->
+          <div class="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br {{ founder.accent }} rounded-full blur-2xl pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity"></div>
+
+          <div>
+            <!-- Header: Photo & Role -->
+            <div class="flex items-start gap-5 sm:gap-6 mb-6">
+              <!-- Avatar -->
+              <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-navy-800 border-2 border-electric-500/30 group-hover:border-electric-400 transition-colors flex-shrink-0 shadow-xl ring-1 ring-white/10">
+                <img
+                  [src]="founder.image"
+                  [alt]="founder.name"
+                  class="w-full h-full object-cover object-top"
+                  (error)="founder.image = 'assets/images/portfolio-startup.png'"
+                />
+              </div>
+
+              <!-- Name & Titles -->
+              <div class="flex-1">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-electric-500/10 border border-electric-500/20 text-electric-300 mb-1.5">
+                  {{ founder.badge }}
+                </span>
+                <h3 class="text-2xl font-bold text-white font-heading group-hover:text-electric-300 transition-colors">
+                  {{ founder.name }}
+                </h3>
+                <p class="text-sm font-semibold text-electric-400 mb-1">{{ founder.role }}</p>
+                <p class="text-xs text-slate-400 leading-relaxed">{{ founder.title }}</p>
+              </div>
+            </div>
+
+            <!-- Bio -->
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              {{ founder.description }}
+            </p>
+
+            <!-- Skill Tags -->
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              @for (skill of founder.skills; track skill) {
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-slate-300 font-medium">
+                  {{ skill }}
+                </span>
+              }
+            </div>
+          </div>
+
+          <!-- Footer / Social -->
+          <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-medium">Connect with {{ founder.name.split(' ')[0] }}</span>
+            <div class="flex items-center gap-2">
+              @if (founder.socials.linkedin) {
+                <a
+                  [href]="founder.socials.linkedin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  [attr.aria-label]="founder.name + ' on LinkedIn'"
+                  class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-electric-500/40 hover:bg-electric-500/10 transition-all"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              }
+              @if (founder.socials.email) {
+                <a
+                  [href]="founder.socials.email"
+                  [attr.aria-label]="'Email ' + founder.name"
+                  class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-electric-500/40 hover:bg-electric-500/10 transition-all"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+

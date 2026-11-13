@@ -1,0 +1,15 @@
+<app-navbar (openAttestation)="modalService.openAttestation()"></app-navbar>
+
+<main id="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer (openAttestation)="modalService.openAttestation()"></app-footer>
+<app-whatsapp-button></app-whatsapp-button>
+
+@if (modalService.isAttestationModalOpen()) {
+  <app-attestation-modal
+    (close)="modalService.closeAttestation()"
+    (selectAttestation)="onSelectAttestation()"
+  ></app-attestation-modal>
+}

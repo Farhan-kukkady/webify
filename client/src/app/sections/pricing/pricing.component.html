@@ -1,0 +1,161 @@
+<section class="section-padding bg-navy-800/40 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 left-1/4 w-1/2 h-1/2 bg-electric-500/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="section-container relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Packages & Scope
+      </span>
+      <h2 class="text-display-lg font-heading text-white mb-4">
+        Tailored Packages, <span class="gradient-text">Transparent Scope</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        Every project is unique. We discuss your exact project scope on a quick call or text to provide a tailored quote with zero hidden fees.
+      </p>
+    </div>
+
+    <!-- Website plans -->
+    <div class="flex items-center justify-center gap-2 mb-8 reveal">
+      <div class="w-7 h-7 rounded-lg bg-electric-500/20 border border-electric-500/30 flex items-center justify-center text-electric-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3 class="text-white font-semibold text-sm uppercase tracking-widest">
+        Website Packages
+      </h3>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mb-16">
+      @for (plan of plans; track plan.id; let i = $index) {
+        <div
+          class="reveal relative flex flex-col rounded-2xl overflow-hidden"
+          [style.transition-delay]="(i * 100) + 'ms'"
+          [id]="'plan-' + plan.id"
+        >
+          @if (plan.popular) {
+            <!-- Popular badge (outside card, on top) -->
+            <div class="bg-gradient-electric text-white text-xs font-bold text-center py-2 tracking-wide flex items-center justify-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              MOST POPULAR
+            </div>
+          }
+
+          <div
+            class="flex-1 p-8 border rounded-2xl transition-all duration-300 group flex flex-col justify-between"
+            [class.border-electric-500]="plan.popular"
+            [class.bg-gradient-card]="plan.popular"
+            [class.shadow-electric]="plan.popular"
+            [class.border-white]="!plan.popular"
+            [class.border-opacity-10]="!plan.popular"
+            [class.bg-navy-800]="!plan.popular"
+            [class.rounded-t-none]="plan.popular"
+            [class.hover:border-electric-500]="!plan.popular"
+            [class.hover:border-opacity-50]="!plan.popular"
+          >
+            <div>
+              <!-- Plan name & quote badge -->
+              <div class="mb-6 pb-6 border-b border-white/5">
+                <h4 class="text-white font-bold text-xl font-heading mb-1">{{ plan.name }}</h4>
+                <p class="text-slate-400 text-sm mb-4 min-h-[40px]">{{ plan.description }}</p>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-electric-500/10 border border-electric-500/25">
+                  <span class="w-2 h-2 rounded-full bg-electric-400"></span>
+                  <span class="text-sm font-bold text-white font-heading">{{ plan.price }}</span>
+                  <span class="text-xs text-slate-400">&bull; {{ plan.period }}</span>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3 mb-8">
+                @for (feature of plan.features; track feature) {
+                  <li class="flex items-start gap-3 text-sm text-slate-300">
+                    <div class="w-5 h-5 rounded-full bg-electric-500/20 border border-electric-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    {{ feature }}
+                  </li>
+                }
+                @if (plan.notIncluded) {
+                  @for (feature of plan.notIncluded; track feature) {
+                    <li class="flex items-start gap-3 text-sm text-slate-500 line-through">
+                      <div class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                      </div>
+                      {{ feature }}
+                    </li>
+                  }
+                }
+              </ul>
+            </div>
+
+            <!-- CTA -->
+            <button
+              (click)="scrollToContact()"
+              class="w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-300"
+              [class.btn-primary]="plan.popular"
+              [class.btn-secondary]="!plan.popular"
+              [id]="'plan-cta-' + plan.id"
+            >
+              {{ plan.cta }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Social media add-ons -->
+    <div class="reveal">
+      <div class="gradient-divider mb-12"></div>
+      <div class="flex items-center justify-center gap-2 mb-8">
+        <div class="w-7 h-7 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3 class="text-white font-semibold text-sm uppercase tracking-widest">
+          Social Media Add-On Plans
+        </h3>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-6">
+        @for (plan of socialPlans; track plan.name; let i = $index) {
+          <div class="card group hover:border-electric-500/40 flex flex-col justify-between" [style.transition-delay]="(i * 80) + 'ms'">
+            <div>
+              <div class="mb-4">
+                <h4 class="text-white font-bold font-heading mb-1">{{ plan.name }}</h4>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 mb-1">
+                  <span class="text-xs font-bold text-cyan-300 font-heading">{{ plan.price }}</span>
+                </div>
+                <p class="text-slate-400 text-xs">{{ plan.period }}</p>
+              </div>
+              <ul class="space-y-2 mb-6">
+                @for (feature of plan.features; track feature) {
+                  <li class="flex items-center gap-2 text-sm text-slate-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 flex-shrink-0"></span>
+                    {{ feature }}
+                  </li>
+                }
+              </ul>
+            </div>
+            <button
+              (click)="scrollToContact()"
+              class="w-full btn-secondary text-sm py-2.5"
+            >
+              Discuss Add-On
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Satisfaction guarantee -->
+    <div class="mt-12 text-center reveal">
+      <div class="inline-flex items-center gap-3 glass rounded-2xl px-6 py-4 border-white/10">
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <p class="text-slate-300 text-sm">
+          <strong class="text-white">100% Satisfaction Commitment.</strong> We work closely with you through revisions until your website matches your exact vision.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

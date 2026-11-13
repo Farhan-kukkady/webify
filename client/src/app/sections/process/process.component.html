@@ -1,0 +1,61 @@
+<section class="section-padding bg-navy-900 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric-500/4 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="section-container relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Our Process
+      </span>
+      <h2 class="text-display-lg font-heading text-white mb-4">
+        From Idea to <span class="gradient-text">Launch in 14 Days</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        A clear, collaborative process — so you always know what's happening and when.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Vertical line (desktop) -->
+      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-electric-500/40 via-electric-500/20 to-transparent -translate-x-1/2" aria-hidden="true"></div>
+
+      <div class="space-y-8 lg:space-y-0">
+        @for (step of steps; track step.number; let i = $index) {
+          <div
+            class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center relative reveal"
+            [style.transition-delay]="(i * 100) + 'ms'"
+          >
+            <!-- Content: alternates sides on desktop -->
+            <div [class.lg:text-right]="i % 2 === 0" [class.lg:col-start-2]="i % 2 !== 0" [class.lg:col-start-1]="i % 2 === 0">
+              <!-- Card -->
+              <div class="card hover:border-electric-500/40 group">
+                <div class="flex items-center gap-4 mb-4" [class.lg:flex-row-reverse]="i % 2 === 0">
+                  <!-- Step number badge -->
+                  <div class="w-12 h-12 rounded-xl bg-gradient-electric flex items-center justify-center flex-shrink-0 shadow-electric">
+                    <span class="text-white font-bold font-heading text-sm">{{ step.number }}</span>
+                  </div>
+                  <div>
+                    <span class="text-xs text-electric-400 font-medium">{{ step.duration }}</span>
+                    <h3 class="text-white font-bold text-xl font-heading">{{ step.title }}</h3>
+                  </div>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed">{{ step.description }}</p>
+              </div>
+            </div>
+
+            <!-- Center dot (desktop) -->
+            <div class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center z-10" aria-hidden="true">
+              <div class="w-6 h-6 rounded-full bg-electric-500 border-4 border-navy-900 shadow-electric">
+                <div class="absolute inset-0 rounded-full bg-electric-500 animate-ping opacity-30"></div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

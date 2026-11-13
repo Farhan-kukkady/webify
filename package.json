@@ -1,0 +1,25 @@
+{
+  "name": "webify-and-co",
+  "version": "1.0.0",
+  "description": "Webify & Co marketing website and contact API",
+  "private": true,
+  "scripts": {
+    "build:server": "npm --prefix server run build",
+    "build:client": "npm --prefix client run build",
+    "build": "npm run build:server && npm run build:client",
+    "start:server": "npm --prefix server start",
+    "start:client": "npm --prefix client start",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client start"
+  },
+  "keywords": [
+    "agency",
+    "angular",
+    "tailwindcss",
+    "express",
+    "typescript"
+  ],
+  "author": "Webify & Co",
+  "license": "ISC"
+}
+
