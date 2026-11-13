@@ -49,8 +49,8 @@ app.use(['/api', '/'], createRateLimiter());
 app.use(['/api/contact', '/contact'], contactRouter);
 
 // ── Health check ──────────────────────────────────────────────────────────────
-app.get(['/health', '/api/health'], (_req, res) => {
-  res.json({ status: 'ok', env: NODE_ENV, timestamp: new Date().toISOString() });
+app.get(['/', '/api', '/health', '/api/health'], (_req, res) => {
+  res.json({ status: 'ok', service: 'Webify & Co API', env: NODE_ENV, timestamp: new Date().toISOString() });
 });
 
 // ── 404 handler ───────────────────────────────────────────────────────────────

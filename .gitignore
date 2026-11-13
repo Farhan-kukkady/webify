@@ -5,8 +5,7 @@ node_modules/
 # Angular & Build output
 .angular/
 */.angular/
-dist/
-*/dist/
+client/dist/
 tmp/
 */tmp/
 out-tsc/

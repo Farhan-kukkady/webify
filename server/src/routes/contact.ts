@@ -130,9 +130,12 @@ contactRouter.post(
         success: true,
         message: 'Thank you! We received your inquiry and will be in touch within 24 hours.',
       });
-    } catch (err) {
+    } catch (err: any) {
       console.error('[Contact Route Error]', err);
-      res.status(500).json({ error: 'Something went wrong. Please try again later.' });
+      res.status(500).json({
+        error: err?.message || 'Something went wrong. Please try again later.',
+        details: err?.code || 'EMAIL_FAILED',
+      });
     }
   },
 );
