@@ -12,16 +12,25 @@ const NODE_ENV = process.env['NODE_ENV'] ?? 'development';
 // ── Security middleware ───────────────────────────────────────────────────────
 app.use(helmet());
 
-const allowedOrigins = (process.env['ALLOWED_ORIGINS'] ?? 'http://localhost:4200')
+const envOrigins = (process.env['ALLOWED_ORIGINS'] ?? '')
   .split(',')
-  .map((o) => o.trim());
+  .map((o) => o.trim())
+  .filter(Boolean);
+
+const defaultOrigins = [
+  'http://localhost:4200',
+  'https://webifyco.com',
+  'https://www.webifyco.com',
+];
+
+const allowedOrigins = [...defaultOrigins, ...envOrigins];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g. mobile apps, curl)
+      // Allow requests with no origin (e.g. mobile apps, curl, same-origin)
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
+      if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) return callback(null, true);
       callback(new Error(`CORS policy: origin ${origin} not allowed`));
     },
     methods: ['GET', 'POST', 'OPTIONS'],
@@ -34,10 +43,10 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // ── Rate limiter ──────────────────────────────────────────────────────────────
-app.use('/api', createRateLimiter());
+app.use(['/api', '/'], createRateLimiter());
 
 // ── Routes ────────────────────────────────────────────────────────────────────
-app.use('/api/contact', contactRouter);
+app.use(['/api/contact', '/contact'], contactRouter);
 
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get(['/health', '/api/health'], (_req, res) => {
