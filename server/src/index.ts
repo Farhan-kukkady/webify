@@ -64,8 +64,10 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
   res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Webify & Co API running on http://localhost:${PORT} [${NODE_ENV}]`);
-});
+if (!process.env['VERCEL']) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Webify & Co API running on http://localhost:${PORT} [${NODE_ENV}]`);
+  });
+}
 
-export default app;
+export = app;
