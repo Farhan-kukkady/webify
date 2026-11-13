@@ -1,4 +1,7 @@
-import 'dotenv/config';
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('dotenv').config();
+} catch {}
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
