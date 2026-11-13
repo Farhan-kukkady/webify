@@ -4,22 +4,15 @@
   "description": "Webify & Co marketing website and contact API",
   "private": true,
   "scripts": {
-    "build:server": "npm --prefix server run build",
     "build:client": "npm --prefix client run build",
-    "build": "npm run build:server && npm run build:client",
-    "start:server": "npm --prefix server start",
-    "start:client": "npm --prefix client start",
+    "build": "npm run build:client",
+    "start": "node server/index.js",
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client start"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "express-rate-limit": "^7.3.1",
-    "express-validator": "^7.1.0",
-    "helmet": "^7.1.0",
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "webify-and-co": "file:"
   },
   "keywords": [
     "agency",
@@ -31,4 +24,3 @@
   "author": "Webify & Co",
   "license": "ISC"
 }
-
