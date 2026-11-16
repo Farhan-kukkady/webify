@@ -61,7 +61,7 @@ export class PortfolioComponent {
         'Cinematic 4-Slide Ken Burns Hero Presentation',
       ],
       tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'Google Gemini AI', 'Vercel Edge'],
-      liveUrl: 'https://phoenix-zeta-beige.vercel.app',
+      liveUrl: 'https://phoenix.webifyco.com',
       imagePath: 'assets/images/project-phoenix.webp',
       color: 'from-amber-500/25 via-orange-500/20 to-electric-500/25',
       featured: true,

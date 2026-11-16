@@ -33,7 +33,7 @@ export class HomeComponent {
       tags: ['Next.js 16', 'React 19', 'Google Gemini AI', 'ROI Calculator', 'Vercel Edge'],
       image: 'assets/images/project-phoenix.webp',
       badge: 'Featured Enterprise Case Study',
-      liveUrl: 'https://phoenix-zeta-beige.vercel.app',
+      liveUrl: 'https://phoenix.webifyco.com',
     },
     {
       title: 'Webify Signature — "Elena" Luxury Experience',
